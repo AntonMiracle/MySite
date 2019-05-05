@@ -1,0 +1,72 @@
+{% extends "main/wrapper.html" %}
+
+{% block content %}
+    <div class="container-fluid text-center">
+        <div class="row justify-content-sm-center">
+            <div class="col-xs-12 col-md-4">
+                <form action="" method="post" class="form-signin"
+                      oninput='password.setCustomValidity(password.value != confirm_password.value ? "Passwords do not match" : "")'>
+
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 font-weight-normal text-dark">Sign up</h1>
+
+                    <div class="form-group">
+                        <label for="inputUsername">Name</label>
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger m-0 p-0" role="alert">
+                                {% for error in form.username.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {{ form.username }}
+                        <small id="inputUsernameHelp" class="form-text text-black-50 m-0">
+                            may contain only letters, numbers, and @/./+/-/_ characters.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        {% if form.password.errors %}
+                            <div class="alert alert-danger m-0 p-0" role="alert">
+                                {% for error in form.password.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {{ form.password }}
+                        <small id="inputPasswordHelp" class="form-text text-black-50 m-0">
+                            minimum 6 symbols.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputConfirmPassword">Confirm password</label>
+                        <input type="password" class="form-control text-center" name="confirm_password" id="inputConfirmPassword"
+                               placeholder="" required="" aria-describedby="inputConfirmPasswordHelp">
+                        <small id="inputConfirmPasswordHelp" class="form-text text-black-50 m-0">
+                            need to match with password.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        {% if form.email.errors %}
+                            <div class="alert alert-danger m-0 p-0" role="alert">
+                                {% for error in form.email.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {{ form.email }}
+                        <small id="inputEmailHelp" class="form-text text-black-50 m-0">
+                            enter existing email.
+                        </small>
+                    </div>
+                    <button class="btn btn-primary m-3" type="submit">Complete</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
