@@ -1,1 +1,1 @@
-# MySite
+# Python and Django
