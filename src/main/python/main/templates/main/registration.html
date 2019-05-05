@@ -8,7 +8,7 @@
                       oninput='password.setCustomValidity(password.value != confirm_password.value ? "Passwords do not match" : "")'>
 
                     {% csrf_token %}
-                    <h1 class="h3 mb-3 font-weight-normal text-dark">Sign up</h1>
+                    <h1 class="text-primary mb-3 display-4">Sign up</h1>
 
                     <div class="form-group">
                         <label for="inputUsername">Name</label>
@@ -42,7 +42,7 @@
 
                     <div class="form-group">
                         <label for="inputConfirmPassword">Confirm password</label>
-                        <input type="password" class="form-control text-center" name="confirm_password" id="inputConfirmPassword"
+                        <input type="password" class="form-control text-center border border-primary" name="confirm_password" id="inputConfirmPassword"
                                placeholder="" required="" aria-describedby="inputConfirmPasswordHelp">
                         <small id="inputConfirmPasswordHelp" class="form-text text-black-50 m-0">
                             need to match with password.
@@ -63,7 +63,7 @@
                             enter existing email.
                         </small>
                     </div>
-                    <button class="btn btn-primary m-3" type="submit">Complete</button>
+                    <button class="btn btn-primary m-3" type="submit">Sign up</button>
 
                 </form>
             </div>
