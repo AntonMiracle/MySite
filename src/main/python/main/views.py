@@ -42,7 +42,11 @@ def login(request):
                 form.add_error('username', ValidationError('Incorrect password or name.'))
                 return render(request, 'main/login.html', {'form': form})
             dj_login(request, user)
-            return redirect('home')
+            next = request.GET.get('next')
+            if next:
+                return redirect(next)
+            else:
+                return redirect('home')
         else:
             return render(request, 'main/login.html', {'form': form})
 
