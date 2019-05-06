@@ -22,30 +22,20 @@ multiply.generate()
 
 @login_required()
 def learn(request):
-    print(multiply.number)
-    print(multiply.times)
-    print(multiply.result)
-    inputNumberError = False
-    inputTimesError = False
-    inputResultError = False
+    input_number_error = False
+    input_times_error = False
+    input_result_error = False
     if request.POST:
-        print("********** POST")
-        inputNumber = int(request.POST.get('inputNumber'))
-        inputTimes = int(request.POST.get('inputTimes'))
-        inputResult = int(request.POST.get('inputResult'))
-        print(inputNumber)
-        print(inputTimes)
-        print(inputResult)
-        if inputNumber != multiply.number:
-            inputNumberError = True
-        if inputTimes != multiply.times:
-            inputTimesError = True
-        if inputResult != multiply.result:
-            inputResultError = True
-        print(inputNumberError)
-        print(inputTimesError)
-        print(inputResultError)
-        if not inputNumberError and not inputTimesError and not inputResultError:
+        input_number = int(request.POST.get('input_number'))
+        input_times = int(request.POST.get('input_times'))
+        input_result = int(request.POST.get('input_result'))
+        if input_number != multiply.number:
+            input_number_error = True
+        if input_times != multiply.times:
+            input_times_error = True
+        if input_result != multiply.result:
+            input_result_error = True
+        if not input_number_error and not input_times_error and not input_result_error:
             multiply.generate()
 
     times_sum = [multiply.number for i in range(multiply.times)]
@@ -56,9 +46,9 @@ def learn(request):
         'result': multiply.result,
         'times_sum': times_sum,
         'times_sum_len': times_sum_len,
-        'inputNumberError': inputNumberError,
-        'inputTimesError': inputTimesError,
-        'inputResultError': inputResultError,
+        'input_number_error': input_number_error,
+        'input_times_error': input_times_error,
+        'input_result_error': input_result_error,
     }
 
     return render(request, 'multiply/learn.html', ctx)
