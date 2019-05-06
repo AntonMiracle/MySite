@@ -23,6 +23,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/src/main/python/main/templates/main" />
+        <option value="$MODULE_DIR$/src/main/python/multiply/templates/multiply" />
       </list>
     </option>
   </component>
