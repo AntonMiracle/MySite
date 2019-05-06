@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MySite</title>
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% load staticfiles %}
     <!-- bootstrap -->
@@ -30,6 +34,7 @@
 
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="btn btn-primary m-1" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="btn btn-primary m-1" href="/multiply">Multiply</a></li>
                 {% endif %}
 
                 {% if not user.is_authenticated %}
@@ -43,37 +48,6 @@
         </div>
     </nav>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% block content %}
 
