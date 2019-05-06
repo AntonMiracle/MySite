@@ -1,0 +1,89 @@
+{% extends "multiply/wrapper.html" %}
+
+{% block multiply_content %}
+
+    <div class="container-fluid ">
+        <div class="h1 row d-flex justify-content-center font-weight-normal">
+            <p class="col-xs-2 m-1 text-warning">{{ number }}</p>
+            <p class="col-xs-2 m-1 text-dark">x</p>
+            <p class="col-xs-2 m-1 text-success">{{ times }}</p>
+            <p class="col-xs-2 m-1 text-dark">=</p>
+            <p class="col-xs-2 m-1 text-danger">{{ result }}</p>
+        </div>
+
+
+        <div class="h5 row d-flex justify-content-center font-weight-normal">
+            <p class="m-1 text-primary">As a sum:</p>
+        </div>
+        <div class="row d-flex justify-content-center text-break font-weight-normal">
+            {% for i in times_sum %}
+                <p class="text-success font-weight-light">{{ forloop.counter }}</p>
+                <p class="h1 m-1 text-warning font-weight-normal">{{ i }}</p>
+                {% if forloop.counter0 != times_sum_len|add:"-1" %}
+                    <p class="h1 m-1 text-dark font-weight-light">+</p>
+                {% endif %}
+            {% endfor %}
+            <p class="h1 m-1 text-dark font-weight-light">=</p>
+            <p class="h1 m-1 text-danger font-weight-normal">{{ result }}</p>
+        </div>
+
+
+        <div class="h5 row d-flex justify-content-center font-weight-normal">
+            <p class="m-1 text-primary">Try yourself:</p>
+        </div>
+
+
+        <form class="h5 m-4" action="" method="post">
+            {% csrf_token %}
+            <div class="m-4 row d-flex justify-content-center text-break font-weight-normal align-items-center">
+                {% if inputTimesError %}
+                    <div class="alert alert-danger m-1 p-0" role="alert">
+                        Try again:
+                    </div>
+                {% endif %}
+                <p class="col-xs-2 m-1 text-warning">{{ number }}</p>
+                <p class="col-xs-2 m-1 text-dark">x</p>
+                <input class="text-success text-center" type="number" name="inputTimes" value="0"
+                       style="width: 50px" required=""/>
+                <p class="col-xs-2 m-1 text-dark">=</p>
+                <p class="col-xs-2 m-1 text-danger">{{ result }}</p>
+            </div>
+
+
+            <div class="m-4 row d-flex justify-content-center text-break font-weight-normal align-items-center">
+                {% if inputNumberError %}
+                    <div class="alert alert-danger m-1 p-0" role="alert">
+                        Try again:
+                    </div>
+                {% endif %}
+                <input class="text-success text-center" type="number" name="inputNumber" value="0"
+                       style="width: 50px" required=""/>
+                <p class="col-xs-2 m-1 text-dark">x</p>
+                <p class="col-xs-2 m-1 text-success">{{ times }}</p>
+                <p class="col-xs-2 m-1 text-dark">=</p>
+                <p class="col-xs-2 m-1 text-danger">{{ result }}</p>
+            </div>
+
+
+            <div class="m-4 row d-flex justify-content-center text-break font-weight-normal align-items-center">
+                {% if inputResultError %}
+                    <div class="alert alert-danger m-1 p-0" role="alert">
+                        Try again:
+                    </div>
+                {% endif %}
+                <p class="col-xs-2 m-1 text-warning">{{ number }}</p>
+                <p class="col-xs-2 m-1 text-dark">x</p>
+                <p class="col-xs-2 m-1 text-success">{{ times }}</p>
+                <p class="col-xs-2 m-1 text-dark">=</p>
+                <input class="text-success text-center" type="number" name="inputResult" value="0"
+                       style="width: 50px" required=""/>
+            </div>
+
+
+            <div class="m-4 row d-flex justify-content-center text-break align-items-center">
+                <button class="btn btn-primary m-3" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
