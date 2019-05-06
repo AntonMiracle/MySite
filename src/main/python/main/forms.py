@@ -11,7 +11,7 @@ class LoginForm(ModelForm):
         widgets = {
             'username': TextInput(attrs={
                 'type': 'text',
-                'class': 'form-control text-center border border-primary',
+                'class': 'form-control text-center border border-success',
                 'name': 'name',
                 'id': 'inputUsername',
                 'placeholder': '',
@@ -20,7 +20,7 @@ class LoginForm(ModelForm):
             }),
             'password': TextInput(attrs={
                 'type': 'password',
-                'class': 'form-control text-center border border-primary',
+                'class': 'form-control text-center border border-success',
                 'name': 'password',
                 'id': 'inputPassword',
                 'placeholder': '',
@@ -50,7 +50,7 @@ class RegistrationForm(ModelForm):
         widgets = {
             'username': TextInput(attrs={
                 'type': 'text',
-                'class': 'form-control text-center border border-primary',
+                'class': 'form-control text-center border border-success',
                 'name': 'name',
                 'id': 'inputUsername',
                 'placeholder': '',
@@ -59,7 +59,7 @@ class RegistrationForm(ModelForm):
             }),
             'password': TextInput(attrs={
                 'type': 'password',
-                'class': 'form-control text-center border border-primary',
+                'class': 'form-control text-center border border-success',
                 'name': 'password',
                 'id': 'inputPassword',
                 'placeholder': '',
@@ -68,7 +68,7 @@ class RegistrationForm(ModelForm):
             }),
             'email': TextInput(attrs={
                 'type': 'email',
-                'class': 'form-control text-center border border-primary',
+                'class': 'form-control text-center border border-success',
                 'name': 'email',
                 'id': 'inputEmail',
                 'placeholder': '',
