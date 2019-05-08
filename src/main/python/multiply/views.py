@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from random import randint
 from .models import MultiplyUserRank
+from django.db import transaction
 
 
 class MultiplyContext:
@@ -12,7 +13,7 @@ class MultiplyContext:
             create_user_rank = MultiplyUserRank(user=user, level=1, experience=0, next_level=100)
             create_user_rank.save()
 
-        rank = MultiplyUserRank(MultiplyUserRank.objects.filter(user=user)[0])
+        rank = MultiplyUserRank.objects.get(user=user)
         self.ctx.update({
             'username': user.username,
             'level': rank.level,
@@ -29,9 +30,33 @@ class Multiply:
 
     def generate(self, level=1):
         self.level = level
-        self.number = randint(1, 9 + self.level)
-        self.times = randint(1, 10 + self.level)
+        self.number = randint(1, 4 + self.level)
+        self.times = randint(1, 10)
         self.result = self.number * self.times
+
+
+class Task:
+    def __init__(self, level):
+        self.rank = randint(1, 3)
+        self.multiply = Multiply()
+        self.multiply.generate(level)
+        self.exp_coefficient = 1 + (level / self.multiply.number)
+
+        if self.multiply.number > 1000:
+            self.exp_coefficient *= 1000
+        elif self.exp_coefficient > 100:
+            self.exp_coefficient *= 100
+        elif self.exp_coefficient > 10:
+            self.exp_coefficient *= 10
+
+        if self.rank == 1 or self.rank == 2:
+            self.exp = 2
+            self.exp_coefficient *= 1
+        elif self.rank == 3:
+            self.exp_coefficient *= 2
+            self.exp = 3
+
+        self.exp *= self.exp_coefficient
 
 
 multiply = Multiply()
@@ -40,6 +65,7 @@ multiply.generate()
 
 @login_required()
 def learn(request):
+    ctx = MultiplyContext(request).ctx
     input_number_error = False
     input_times_error = False
     input_result_error = False
@@ -54,12 +80,10 @@ def learn(request):
         if input_result != multiply.result:
             input_result_error = True
         if not input_number_error and not input_times_error and not input_result_error:
-            multiply.generate()
+            multiply.generate(ctx['level'])
 
     times_sum = [multiply.number for i in range(multiply.times)]
     times_sum_len = len(times_sum)
-
-    ctx = MultiplyContext(request).ctx
     ctx.update({
         'number': multiply.number,
         'times': multiply.times,
@@ -74,10 +98,65 @@ def learn(request):
 
 
 @login_required()
-def test(request):
-    return render(request, 'multiply/test.html')
+def experience(request):
+    complete = False
+    if request.POST:
+        task_rank = int(request.POST.get('task_rank'))
+        task_exp = int(request.POST.get('task_exp'))
+        task_times = int(request.POST.get('task_times'))
+        task_result = int(request.POST.get('task_result'))
+
+        if task_rank == 1:
+            input_times = int(request.POST.get('input_times'))
+            complete = task_times == input_times
+        elif task_rank == 2:
+            input_result = int(request.POST.get('input_result'))
+            complete = task_result == input_result
+        elif task_rank == 3:
+            input_number = int(request.POST.get('input_number'))
+            input_times = int(request.POST.get('input_times'))
+            input_result = input_times * input_number
+            complete = task_result == input_result
+
+        if complete:
+            add_experience(request, task_exp)
+        else:
+            remove_experience(request, task_exp)
+        return redirect('experience')
+
+    ctx = MultiplyContext(request).ctx
+    exp = Task(ctx['level'])
+    ctx['task'] = exp
+    return render(request, 'multiply/experience.html', ctx)
 
 
 @login_required()
 def main(request):
     return render(request, 'multiply/main.html', MultiplyContext(request).ctx)
+
+
+@transaction.atomic
+@login_required()
+def add_experience(request, amount):
+    user = request.user
+    rank = MultiplyUserRank.objects.get(user=user)
+    new_experience = rank.experience + amount
+
+    if new_experience >= rank.next_level:
+        rank.level += 1
+        rank.next_level += 100 * 1.5
+
+    rank.experience = new_experience
+    rank.save()
+
+
+@transaction.atomic
+@login_required()
+def remove_experience(request, amount):
+    user = request.user
+    rank = MultiplyUserRank.objects.get(user=user)
+    amount = amount * 1.5
+    if rank.experience > amount:
+        new_experience = rank.experience - amount
+        rank.experience = new_experience
+        rank.save()

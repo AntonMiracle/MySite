@@ -1,0 +1,58 @@
+{% extends "multiply/wrapper.html" %}
+
+{% block multiply_content %}
+
+    <div class="container-fluid ">
+
+        <div class="h5 row d-flex justify-content-center font-weight-normal">
+            <p class="m-1 text-primary">Quest:</p>
+        </div>
+
+
+        <form class="h5 m-4" action="" method="post">
+            {% csrf_token %}
+            <div class="m-4 row d-flex justify-content-center text-break font-weight-normal align-items-center">
+                <input type="hidden" name="task_rank" value="{{ task.rank }}">
+                <input type="hidden" name="task_number" value="{{ task.multiply.number }}">
+                <input type="hidden" name="task_times" value="{{ task.multiply.times }}">
+                <input type="hidden" name="task_result" value="{{ task.multiply.result }}">
+                <input type="hidden" name="task_exp" value="{{ task.exp|floatformat:0 }}">
+
+                {% if task.rank == 1 %}
+                    <p class="col-xs-2 m-1 text-warning">{{ task.multiply.number }}</p>
+                    <p class="col-xs-2 m-1 text-dark">x</p>
+                    <input class="text-success text-center" type="number" name="input_times" value="0"
+                           style="width: 50px" required=""/>
+                    <p class="col-xs-2 m-1 text-dark">=</p>
+                    <p class="col-xs-2 m-1 text-danger">{{ task.multiply.result }}</p>
+                {% endif %}
+                {% if task.rank == 2 %}
+                    <p class="col-xs-2 m-1 text-warning">{{ task.multiply.number }}</p>
+                    <p class="col-xs-2 m-1 text-dark">x</p>
+                    <p class="col-xs-2 m-1 text-success">{{ task.multiply.times }}</p>
+                    <p class="col-xs-2 m-1 text-dark">=</p>
+                    <input class="text-success text-center" type="number" name="input_result" value="0"
+                           style="width: 50px" required=""/>
+                {% endif %}
+                {% if task.rank == 3 %}
+                    <input class="text-success text-center" type="number" name="input_number" value="0"
+                           style="width: 50px" required=""/>
+                    <p class="col-xs-2 m-1 text-dark">x</p>
+                    <input class="text-success text-center" type="number" name="input_times" value="0"
+                           style="width: 50px" required=""/>
+                    <p class="col-xs-2 m-1 text-dark">=</p>
+                    <p class="col-xs-2 m-1 text-danger">{{ task.multiply.result }}</p>
+                {% endif %}
+            </div>
+
+            <div class="h5 row d-flex justify-content-center font-weight-normal">
+                <p class="m-1 text-primary">Reward: {{ task.exp|floatformat:0 }} Exp</p>
+            </div>
+
+            <div class="m-4 row d-flex justify-content-center text-break align-items-center">
+                <button class="btn mybtn btn-primary m-3" type="submit">Get</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
