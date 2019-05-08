@@ -1,6 +1,24 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from random import randint
+from .models import MultiplyUserRank
+
+
+class MultiplyContext:
+    def __init__(self, request):
+        self.ctx = {}
+        user = request.user
+        if not MultiplyUserRank.objects.filter(user=user).count():
+            create_user_rank = MultiplyUserRank(user=user, level=1, experience=0, next_level_additional_experience=100)
+            create_user_rank.save()
+
+        rank = MultiplyUserRank(MultiplyUserRank.objects.filter(user=user)[0])
+        self.ctx.update({
+            'username': user.username,
+            'level': rank.level,
+            'experience': rank.experience,
+            'next_level': rank.next_level_additional_experience,
+        })
 
 
 class Multiply:
@@ -40,7 +58,9 @@ def learn(request):
 
     times_sum = [multiply.number for i in range(multiply.times)]
     times_sum_len = len(times_sum)
-    ctx = {
+
+    ctx = MultiplyContext(request).ctx
+    ctx.update({
         'number': multiply.number,
         'times': multiply.times,
         'result': multiply.result,
@@ -49,11 +69,15 @@ def learn(request):
         'input_number_error': input_number_error,
         'input_times_error': input_times_error,
         'input_result_error': input_result_error,
-    }
-
+    })
     return render(request, 'multiply/learn.html', ctx)
 
 
 @login_required()
+def test(request):
+    return render(request, 'multiply/test.html')
+
+
+@login_required()
 def main(request):
-    return render(request, 'multiply/main.html')
+    return render(request, 'multiply/main.html', MultiplyContext(request).ctx)

@@ -4,12 +4,25 @@
     multiply
 {% endblock %}
 
+{% block app_name %}
+    X-multiply
+{% endblock %}
+
 {% block content %}
-    <div class="container-fluid justify-content-md-center align-items-center">
-        <div class="row justify-content-md-center">
-            <div class="col-xs-12 col-md-6 text-center">
-                <h1 class="h1 m-4 text-primary">Multiply</h1>
-            </div>
+    <div class="container-fluid">
+        <div class="h1 row d-flex justify-content-center font-weight-normal">
+            <table class="h5 text-center border border-primary">
+                <tr>
+                    <td class="mytd text-primary">Name:</td>
+                    <td class="mytd">{{ username }}</td>
+
+                    <td class="mytd text-primary">Lvl:</td>
+                    <td class="mytd">{{ level }}</td>
+
+                    <td class="mytd text-primary">Exp:</td>
+                    <td class="mytd">{{ experience }}/{{ experience }}</td>
+                </tr>
+            </table>
         </div>
     </div>
 
