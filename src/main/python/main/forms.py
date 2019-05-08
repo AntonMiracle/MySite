@@ -1,7 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 from django.forms import ModelForm, TextInput, ValidationError
-from django.db import models
 from django import forms
 
 
