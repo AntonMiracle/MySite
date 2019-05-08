@@ -40,7 +40,7 @@ class Task:
         self.rank = randint(1, 3)
         self.multiply = Multiply()
         self.multiply.generate(level)
-        self.exp_coefficient = 1 + (level / self.multiply.number)
+        self.exp_coefficient = 2 + (level / self.multiply.number)
 
         if self.multiply.number > 1000:
             self.exp_coefficient *= 1000
