@@ -9,7 +9,7 @@ class MultiplyContext:
         self.ctx = {}
         user = request.user
         if not MultiplyUserRank.objects.filter(user=user).count():
-            create_user_rank = MultiplyUserRank(user=user, level=1, experience=0, next_level_additional_experience=100)
+            create_user_rank = MultiplyUserRank(user=user, level=1, experience=0, next_level=100)
             create_user_rank.save()
 
         rank = MultiplyUserRank(MultiplyUserRank.objects.filter(user=user)[0])
@@ -17,7 +17,7 @@ class MultiplyContext:
             'username': user.username,
             'level': rank.level,
             'experience': rank.experience,
-            'next_level': rank.next_level_additional_experience,
+            'next_level': rank.next_level,
         })
 
 

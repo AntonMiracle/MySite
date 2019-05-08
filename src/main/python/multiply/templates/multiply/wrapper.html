@@ -11,16 +11,17 @@
 {% block content %}
     <div class="container-fluid">
         <div class="h1 row d-flex justify-content-center font-weight-normal">
-            <table class="h5 text-center border border-primary">
+            <table class="h5 text-left border border-primary">
                 <tr>
-                    <td class="mytd text-primary">Name:</td>
-                    <td class="mytd">{{ username }}</td>
+                    <td class="p-1 text-primary">Name:</td>
+                    <td  class="p-1">{{ username }}</td>
 
-                    <td class="mytd text-primary">Lvl:</td>
-                    <td class="mytd">{{ level }}</td>
-
-                    <td class="mytd text-primary">Exp:</td>
-                    <td class="mytd">{{ experience }}/{{ experience }}</td>
+                    <td class="p-1 text-primary">Lvl:</td>
+                    <td class="p-1">{{ level }}</td>
+                </tr>
+                <tr>
+                    <td class="p-1 text-primary">Exp:</td>
+                    <td colspan="3" class="p-1">{{ experience }} / {{ next_level }}</td>
                 </tr>
             </table>
         </div>
