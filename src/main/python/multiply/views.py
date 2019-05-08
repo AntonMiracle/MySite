@@ -50,11 +50,11 @@ class Task:
             self.exp_coefficient *= 10
 
         if self.rank == 1 or self.rank == 2:
-            self.exp = 2
+            self.exp = 3
             self.exp_coefficient *= 1
         elif self.rank == 3:
             self.exp_coefficient *= 2
-            self.exp = 3
+            self.exp = 4
 
         self.exp *= self.exp_coefficient
 
