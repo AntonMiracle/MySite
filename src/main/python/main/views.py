@@ -38,13 +38,13 @@ def login(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            if user == None:
+            if user:
                 form.add_error('username', ValidationError('Incorrect password or name.'))
                 return render(request, 'main/login.html', {'form': form})
             dj_login(request, user)
-            next = request.GET.get('next')
-            if next:
-                return redirect(next)
+            next_url = request.GET.get('next')
+            if next_url:
+                return redirect(next_url)
             else:
                 return redirect('home')
         else:
