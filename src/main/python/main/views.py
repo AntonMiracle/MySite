@@ -21,7 +21,7 @@ def registration(request):
             password = form.cleaned_data.get('password')
             user.set_password(password)
             user.save()
-            dj_login(request,user)
+            dj_login(request, user)
             return redirect('home')
         else:
             return render(request, 'main/registration.html', {'form': form})
@@ -34,15 +34,19 @@ def registration(request):
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST or None)
+
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
+
             if user == None:
                 form.add_error('username', ValidationError('Incorrect password or name.'))
                 return render(request, 'main/login.html', {'form': form})
+
             dj_login(request, user)
             next_url = request.GET.get('next')
+
             if next_url:
                 return redirect(next_url)
             else:
@@ -59,7 +63,7 @@ def logout(request):
     user = request.user
     if user != None:
         dj_logout(request)
-    return render(request, 'main/main.html')
+        return redirect('main')
 
 
 @login_required
