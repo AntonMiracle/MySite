@@ -1,0 +1,45 @@
+{% extends "multiply/wrapper.html" %}
+
+{% block multiply_content %}
+
+    <div class="container-fluid ">
+        <form class="h5 m-4" action="{% url 'experience' %}">
+
+            {% csrf_token %}
+
+            {% if complete == True %}
+                <div class="h5 row d-flex justify-content-center font-weight-normal">
+                    <p class="m-1 text-success">SUCCESS</p>
+                </div>
+                <div class="h5 row d-flex justify-content-center font-weight-normal">
+                    <p class="m-1 text-success">+{{ success_amount|floatformat:0 }} Exp</p>
+                </div>
+                <div class="h5 row d-flex justify-content-center font-weight-normal">
+                    <img src="/static/multiply/victory{{ success_num }}.gif" width="150" height="150"
+                         class="d-inline-block align-top" alt="">
+                </div>
+                <div class="m-4 row d-flex justify-content-center text-break align-items-center">
+                    <button class="btn mybtn btn-primary" type="submit">Next</button>
+                </div>
+            {% endif %}
+
+            {% if complete == False %}
+                <div class="h5 row d-flex justify-content-center font-weight-normal">
+                    <p class="m-1 text-danger">LOOSE</p>
+                </div>
+                <div class="h5 row d-flex justify-content-center font-weight-normal">
+                    <img src="/static/multiply/loose{{ loose_num }}.gif" width="150" height="150"
+                         class="d-inline-block align-top" alt="">
+                </div>
+                <div class="h5 row d-flex justify-content-center font-weight-normal">
+                    <p class="m-1 text-danger">-{{ loose_amount|floatformat:0 }} Exp</p>
+                </div>
+                <div class="m-4 row d-flex justify-content-center text-break align-items-center">
+                    <button class="btn mybtn btn-primary" type="submit">Next</button>
+                </div>
+            {% endif %}
+        </form>
+
+    </div>
+
+{% endblock %}

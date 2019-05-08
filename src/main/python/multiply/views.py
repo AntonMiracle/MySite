@@ -99,7 +99,7 @@ def learn(request):
 
 @login_required()
 def experience(request):
-    complete = False
+    task_complete = False
     if request.POST:
         task_rank = int(request.POST.get('task_rank'))
         task_exp = int(request.POST.get('task_exp'))
@@ -108,26 +108,38 @@ def experience(request):
 
         if task_rank == 1:
             input_times = int(request.POST.get('input_times'))
-            complete = task_times == input_times
+            task_complete = task_times == input_times
         elif task_rank == 2:
             input_result = int(request.POST.get('input_result'))
-            complete = task_result == input_result
+            task_complete = task_result == input_result
         elif task_rank == 3:
             input_number = int(request.POST.get('input_number'))
             input_times = int(request.POST.get('input_times'))
             input_result = input_times * input_number
-            complete = task_result == input_result
+            task_complete = task_result == input_result
 
-        if complete:
-            add_experience(request, task_exp)
+        if task_complete:
+            amount = add_experience(request, task_exp)
         else:
-            remove_experience(request, task_exp)
-        return redirect('experience')
+            amount = remove_experience(request, task_exp)
+
+        return complete(request, task_complete, amount)
 
     ctx = MultiplyContext(request).ctx
     exp = Task(ctx['level'])
     ctx['task'] = exp
     return render(request, 'multiply/experience.html', ctx)
+
+
+@login_required()
+def complete(request, task_complete, amount):
+    ctx = MultiplyContext(request).ctx
+    ctx['complete'] = task_complete
+    ctx['success_num'] = randint(1, 8)
+    ctx['success_amount'] = amount
+    ctx['loose_num'] = randint(1, 5)
+    ctx['loose_amount'] = amount
+    return render(request, 'multiply/complete.html', ctx)
 
 
 @login_required()
@@ -148,6 +160,7 @@ def add_experience(request, amount):
 
     rank.experience = new_experience
     rank.save()
+    return amount
 
 
 @transaction.atomic
@@ -160,3 +173,4 @@ def remove_experience(request, amount):
         new_experience = rank.experience - amount
         rank.experience = new_experience
         rank.save()
+    return amount
