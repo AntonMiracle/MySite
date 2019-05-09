@@ -3,6 +3,8 @@
 {% block multiply_content %}
 
     <div class="container-fluid ">
+
+
         <form class="h5 m-4" action="{% url 'experience' %}">
 
             {% csrf_token %}
@@ -11,15 +13,14 @@
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <p class="m-1 text-success">WIN</p>
                 </div>
+
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <p class="m-1 text-success">+{{ success_amount|floatformat:0 }} Exp</p>
                 </div>
+
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <img src="/static/multiply/victory{{ success_num }}.gif" width="150" height="150"
                          class="d-inline-block align-top" alt="">
-                </div>
-                <div class="m-4 row d-flex justify-content-center text-break align-items-center">
-                    <button class="btn mybtn btn-primary" type="submit">Next</button>
                 </div>
             {% endif %}
 
@@ -27,28 +28,46 @@
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <p class="m-1 text-danger">LOOSE</p>
                 </div>
+
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <img src="/static/multiply/loose{{ loose_num }}.gif" width="150" height="150"
                          class="d-inline-block align-top" alt="">
                 </div>
+
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <p class="m-1 text-danger">-{{ loose_amount|floatformat:0 }} Exp</p>
                 </div>
-                <div class="m-4 row d-flex justify-content-center text-break align-items-center">
-                    <button class="btn mybtn btn-primary" type="submit">Next</button>
-                </div>
             {% endif %}
+
+            <div class="h5 row d-flex justify-content-center font-weight-normal">
+                <p class="m-1 text-primary" id="timer"></p>
+            </div>
+
+            <div class="m-4 row d-flex justify-content-center text-break align-items-center">
+                <button class="btn mybtn btn-primary" id="submit_btn" type="submit">Next</button>
+            </div>
         </form>
 
     </div>
 
     <script>
-        $(document).ready(function () {
-            // Handler for .ready() called.
-            window.setTimeout(function () {
-                location.href = "{% url 'experience' %}";
-            }, 2000);
-        });
-    </script>
+        var countDownDate = new Date()
+        countDownDate.setSeconds(countDownDate.getSeconds() + 6)
 
+        var x = setInterval(function () {
+
+            var distance = countDownDate - new Date().getTime();
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("timer").innerHTML = "Next in: " + seconds + "s ";
+
+            if (distance < 1000) {
+                clearInterval(x);
+                $(document).ready(function () {
+                    setTimeout(function () {
+                        $("#submit_btn").trigger('click');
+                    }, 0);
+                });
+            }
+        }, 900);
+    </script>
 {% endblock %}

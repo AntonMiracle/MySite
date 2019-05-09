@@ -37,6 +37,7 @@ class Multiply:
 
 class Task:
     def __init__(self, level):
+        self.timer_amount= randint(13,33)
         self.rank = randint(1, 3)
         self.multiply = Multiply()
         self.multiply.generate(level)
@@ -57,6 +58,7 @@ class Task:
             self.exp = 4
 
         self.exp *= self.exp_coefficient
+        self.exp *= (200-self.timer_amount*2)/100
 
 
 multiply = Multiply()
@@ -168,7 +170,7 @@ def add_experience(request, amount):
 def remove_experience(request, amount):
     user = request.user
     rank = MultiplyUserRank.objects.get(user=user)
-    amount = amount * 1.5
+    amount = amount * 1.2
     if rank.experience > amount:
         new_experience = rank.experience - amount
         rank.experience = new_experience
