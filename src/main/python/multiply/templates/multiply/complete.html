@@ -6,9 +6,7 @@
 
 
         <form class="h5 m-4" action="{% url 'experience' %}">
-
             {% csrf_token %}
-
             {% if complete == True %}
                 <div class="h5 row d-flex justify-content-center font-weight-normal">
                     <p class="m-1 text-success">WIN</p>
@@ -39,13 +37,14 @@
                 </div>
             {% endif %}
 
+            <div class="m-4 row d-flex justify-content-center text-break align-items-center">
+                <button class="btn mybtn btn-primary" id="submit_btn" type="submit">Next</button>
+            </div>
+
             <div class="h5 row d-flex justify-content-center font-weight-normal">
                 <p class="m-1 text-primary" id="timer"></p>
             </div>
 
-            <div class="m-4 row d-flex justify-content-center text-break align-items-center">
-                <button class="btn mybtn btn-primary" id="submit_btn" type="submit">Next</button>
-            </div>
         </form>
 
     </div>

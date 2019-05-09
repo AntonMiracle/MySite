@@ -30,35 +30,29 @@ class Multiply:
 
     def generate(self, level=1):
         self.level = level
-        self.number = randint(1, 4 + self.level)
-        self.times = randint(1, 10)
+        self.number = randint(2, 4 + self.level)
+        self.times = randint(2, 10)
         self.result = self.number * self.times
 
 
 class Task:
     def __init__(self, level):
-        self.timer_amount= randint(13,33)
+        self.timer_amount = randint(23, 43) + (level / 10)
         self.rank = randint(1, 3)
         self.multiply = Multiply()
         self.multiply.generate(level)
-        self.exp_coefficient = 2 + (level / self.multiply.number)
+        self.exp_coefficient = 1
+        self.exp = 4 + level
 
-        if self.multiply.number > 1000:
-            self.exp_coefficient *= 1000
-        elif self.exp_coefficient > 100:
-            self.exp_coefficient *= 100
-        elif self.exp_coefficient > 10:
-            self.exp_coefficient *= 10
-
-        if self.rank == 1 or self.rank == 2:
-            self.exp = 3
-            self.exp_coefficient *= 1
+        if self.rank == 1:
+            self.exp_coefficient *= 1.5
+        elif self.rank == 2:
+            self.exp_coefficient *= 1.6
         elif self.rank == 3:
-            self.exp_coefficient *= 2
-            self.exp = 4
-
+            my_max = max(self.multiply.number, self.multiply.times)
+            self.exp_coefficient *= 2 - abs(self.multiply.number - self.multiply.times) / my_max
+            self.exp_coefficient *= 1.4
         self.exp *= self.exp_coefficient
-        self.exp *= (200-self.timer_amount*2)/100
 
 
 multiply = Multiply()
@@ -105,19 +99,19 @@ def experience(request):
     if request.POST:
         task_rank = int(request.POST.get('task_rank'))
         task_exp = int(request.POST.get('task_exp'))
-        task_times = int(request.POST.get('task_times'))
+        task_number = int(request.POST.get('task_number'))
         task_result = int(request.POST.get('task_result'))
 
         if task_rank == 1:
-            input_times = int(request.POST.get('input_times'))
-            task_complete = task_times == input_times
+            input_number = int(request.POST.get('input_number'))
+            task_complete = task_number == input_number
         elif task_rank == 2:
             input_result = int(request.POST.get('input_result'))
             task_complete = task_result == input_result
         elif task_rank == 3:
             input_number = int(request.POST.get('input_number'))
             input_times = int(request.POST.get('input_times'))
-            input_result = input_times * input_number
+            input_result = input_number * input_times
             task_complete = task_result == input_result
 
         if task_complete:
@@ -158,7 +152,7 @@ def add_experience(request, amount):
 
     if new_experience >= rank.next_level:
         rank.level += 1
-        rank.next_level += 100 * 1.5
+        rank.next_level *= 2.35
 
     rank.experience = new_experience
     rank.save()
@@ -170,7 +164,7 @@ def add_experience(request, amount):
 def remove_experience(request, amount):
     user = request.user
     rank = MultiplyUserRank.objects.get(user=user)
-    amount = amount * 1.2
+    amount = amount * 0.9
     if rank.experience > amount:
         new_experience = rank.experience - amount
         rank.experience = new_experience

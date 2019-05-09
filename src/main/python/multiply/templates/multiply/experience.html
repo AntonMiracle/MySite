@@ -19,10 +19,10 @@
                 <input type="hidden" name="task_timer_amount" value="{{ task.timer_amount|floatformat:0 }}">
 
                 {% if task.rank == 1 %}
-                    <p class="col-xs-2 m-1 text-warning">{{ task.multiply.number }}</p>
-                    <p class="col-xs-2 m-1 text-dark">x</p>
-                    <input class="text-success text-center" type="number" name="input_times" value="0"
+                    <input class="text-success text-center" type="number" name="input_number" value="0"
                            style="width: 50px" required=""/>
+                    <p class="col-xs-2 m-1 text-dark">x</p>
+                    <p class="col-xs-2 m-1 text-success">{{ task.multiply.times }}</p>
                     <p class="col-xs-2 m-1 text-dark">=</p>
                     <p class="col-xs-2 m-1 text-danger">{{ task.multiply.result }}</p>
                 {% endif %}
@@ -45,13 +45,13 @@
                 {% endif %}
             </div>
 
-            <div class="h5 row d-flex justify-content-center font-weight-normal">
-                <p class="m-1 text-danger" id="timer"></p>
-            </div>
-
             <div class="m-4 row d-flex justify-content-center text-break align-items-center">
                 <button class="btn mybtn btn-primary m-3" id="submit_btn" type="submit">Complete</button>
                 <a class="btn mybtn btn-danger m-1" href="/multiply">Stop</a>
+            </div>
+
+            <div class="h5 row d-flex justify-content-center font-weight-normal">
+                <p class="m-1 text-danger" id="timer"></p>
             </div>
         </form>
     </div>
