@@ -42,4 +42,13 @@
 
     </div>
 
+    <script>
+        $(document).ready(function () {
+            // Handler for .ready() called.
+            window.setTimeout(function () {
+                location.href = "{% url 'experience' %}";
+            }, 2000);
+        });
+    </script>
+
 {% endblock %}
