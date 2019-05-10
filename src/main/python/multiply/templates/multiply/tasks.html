@@ -5,7 +5,7 @@
     <div class="container-fluid ">
 
         <div class="h5 row d-flex justify-content-center font-weight-normal">
-            <p class="m-1 text-primary">Quest:</p>
+            <p class="m-1 text-primary">Task:</p>
         </div>
 
         <form class="h5 m-4" action="" method="post">
@@ -19,8 +19,9 @@
                 <input type="hidden" name="task_timer_amount" value="{{ task.timer_amount|floatformat:0 }}">
 
                 {% if task.rank == 1 %}
-                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''" id="input_id" name="input_number" value="0"
-                           style="width: 50px" required=""/>
+                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''"
+                           id="input_id" name="input_number" value="0"
+                           style="width: 50px"/>
                     <p class="col-xs-2 m-1 text-dark">x</p>
                     <p class="col-xs-2 m-1 text-success">{{ task.multiply.times }}</p>
                     <p class="col-xs-2 m-1 text-dark">=</p>
@@ -31,15 +32,18 @@
                     <p class="col-xs-2 m-1 text-dark">x</p>
                     <p class="col-xs-2 m-1 text-success">{{ task.multiply.times }}</p>
                     <p class="col-xs-2 m-1 text-dark">=</p>
-                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''" id="input_id" name="input_result" value="0"
-                           style="width: 50px" required=""/>
+                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''"
+                           id="input_id" name="input_result" value="0"
+                           style="width: 50px"/>
                 {% endif %}
                 {% if task.rank == 3 %}
-                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''" id="input_id" name="input_number" value="0"
-                           style="width: 50px" required=""/>
+                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''"
+                           id="input_id" name="input_number" value="0"
+                           style="width: 50px"/>
                     <p class="col-xs-2 m-1 text-dark">x</p>
-                    <input class="text-success text-center" type="number" onfocus="this.value = ''" id="input_id" name="input_times" value="0"
-                           style="width: 50px" required=""/>
+                    <input class="text-success text-center" type="number" onfocus="this.value = ''" id="input_id"
+                           name="input_times" value="0"
+                           style="width: 50px"/>
                     <p class="col-xs-2 m-1 text-dark">=</p>
                     <p class="col-xs-2 m-1 text-danger">{{ task.multiply.result }}</p>
                 {% endif %}

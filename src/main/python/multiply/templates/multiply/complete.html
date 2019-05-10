@@ -5,7 +5,7 @@
     <div class="container-fluid ">
 
 
-        <form class="h5 m-4" action="{% url 'experience' %}">
+        <form class="h5 m-4" action="{% url 'tasks' %}">
             {% csrf_token %}
             {% if complete == True %}
                 <div class="h5 row d-flex justify-content-center font-weight-normal">

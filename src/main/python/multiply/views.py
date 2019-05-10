@@ -94,26 +94,27 @@ def learn(request):
 
 
 @login_required()
-def experience(request):
+def tasks(request):
     task_complete = False
     if request.POST:
         task_rank = int(request.POST.get('task_rank'))
         task_exp = int(request.POST.get('task_exp'))
         task_number = int(request.POST.get('task_number'))
         task_result = int(request.POST.get('task_result'))
-
-        if task_rank == 1:
-            input_number = int(request.POST.get('input_number'))
-            task_complete = task_number == input_number
-        elif task_rank == 2:
-            input_result = int(request.POST.get('input_result'))
-            task_complete = task_result == input_result
-        elif task_rank == 3:
-            input_number = int(request.POST.get('input_number'))
-            input_times = int(request.POST.get('input_times'))
-            input_result = input_number * input_times
-            task_complete = task_result == input_result
-
+        try:
+            if task_rank == 1:
+                input_number = int(request.POST.get('input_number'))
+                task_complete = task_number == input_number
+            elif task_rank == 2:
+                input_result = int(request.POST.get('input_result'))
+                task_complete = task_result == input_result
+            elif task_rank == 3:
+                input_number = int(request.POST.get('input_number'))
+                input_times = int(request.POST.get('input_times'))
+                input_result = input_number * input_times
+                task_complete = task_result == input_result
+        except ValueError:
+            pass
         if task_complete:
             amount = add_experience(request, task_exp)
         else:
@@ -124,7 +125,7 @@ def experience(request):
     ctx = MultiplyContext(request).ctx
     exp = Task(ctx['level'])
     ctx['task'] = exp
-    return render(request, 'multiply/experience.html', ctx)
+    return render(request, 'multiply/tasks.html', ctx)
 
 
 @login_required()
