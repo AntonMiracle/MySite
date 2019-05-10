@@ -19,7 +19,7 @@
                 <input type="hidden" name="task_timer_amount" value="{{ task.timer_amount|floatformat:0 }}">
 
                 {% if task.rank == 1 %}
-                    <input class="text-success text-center" type="number" name="input_number" value="0"
+                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''" id="input_id" name="input_number" value="0"
                            style="width: 50px" required=""/>
                     <p class="col-xs-2 m-1 text-dark">x</p>
                     <p class="col-xs-2 m-1 text-success">{{ task.multiply.times }}</p>
@@ -31,14 +31,14 @@
                     <p class="col-xs-2 m-1 text-dark">x</p>
                     <p class="col-xs-2 m-1 text-success">{{ task.multiply.times }}</p>
                     <p class="col-xs-2 m-1 text-dark">=</p>
-                    <input class="text-success text-center" type="number" name="input_result" value="0"
+                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''" id="input_id" name="input_result" value="0"
                            style="width: 50px" required=""/>
                 {% endif %}
                 {% if task.rank == 3 %}
-                    <input class="text-success text-center" type="number" name="input_number" value="0"
+                    <input class="text-success text-center" type="number" autofocus onfocus="this.value = ''" id="input_id" name="input_number" value="0"
                            style="width: 50px" required=""/>
                     <p class="col-xs-2 m-1 text-dark">x</p>
-                    <input class="text-success text-center" type="number" name="input_times" value="0"
+                    <input class="text-success text-center" type="number" onfocus="this.value = ''" id="input_id" name="input_times" value="0"
                            style="width: 50px" required=""/>
                     <p class="col-xs-2 m-1 text-dark">=</p>
                     <p class="col-xs-2 m-1 text-danger">{{ task.multiply.result }}</p>
@@ -75,6 +75,12 @@
                 });
             }
         }, 900);
+        $(document).ready(function () {
+            $('#input_id').keypress(function (e) {
+                if (e.keyCode == 13)
+                    $('#submit_btn').click();
+            });
+        });
     </script>
 
 {% endblock %}

@@ -43,7 +43,8 @@
                 {% endif %}
                 <p class="col-xs-2 m-1 text-warning">{{ number }}</p>
                 <p class="col-xs-2 m-1 text-dark">x</p>
-                <input class="text-success text-center" type="number" name="input_times" value="0"
+                <input class="text-success text-center" type="number" id="input_id" onfocus="this.value = ''" name="input_times"
+                       autofocus value="0"
                        style="width: 100px" required=""/>
                 <p class="col-xs-2 m-1 text-dark">=</p>
                 <p class="col-xs-2 m-1 text-danger">{{ result }}</p>
@@ -56,7 +57,8 @@
                         Try again:
                     </div>
                 {% endif %}
-                <input class="text-success text-center" type="number" name="input_number" value="0"
+                <input class="text-success text-center" type="number" id="input_id" onfocus="this.value = ''" name="input_number"
+                       value="0"
                        style="width: 100px" required=""/>
                 <p class="col-xs-2 m-1 text-dark">x</p>
                 <p class="col-xs-2 m-1 text-success">{{ times }}</p>
@@ -75,7 +77,8 @@
                 <p class="col-xs-2 m-1 text-dark">x</p>
                 <p class="col-xs-2 m-1 text-success">{{ times }}</p>
                 <p class="col-xs-2 m-1 text-dark">=</p>
-                <input class="text-success text-center" type="number" name="input_result" value="0"
+                <input class="text-success text-center" type="number" onfocus="this.value = ''" id="input_id" name="input_result"
+                       value="0"
                        style="width: 100px" required=""/>
             </div>
 
@@ -85,5 +88,12 @@
             </div>
         </form>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            $('#input_id').keypress(function (e) {
+                if (e.keyCode == 13)
+                    $('#submit_btn').click();
+            });
+        });
+    </script>
 {% endblock %}

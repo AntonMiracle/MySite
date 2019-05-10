@@ -152,7 +152,8 @@ def add_experience(request, amount):
 
     if new_experience >= rank.next_level:
         rank.level += 1
-        rank.next_level *= 2.35
+        rank.experience_for_next_level *= 1.5
+        rank.next_level += rank.experience_for_next_level
 
     rank.experience = new_experience
     rank.save()

@@ -7,3 +7,4 @@ class MultiplyUserRank(models.Model):
     level = models.IntegerField(default=1)
     experience = models.IntegerField(default=0)
     next_level = models.IntegerField(default=100)
+    experience_for_next_level = models.IntegerField(default=100)
