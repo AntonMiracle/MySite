@@ -25,7 +25,7 @@
             <img src="/static/main/brand.png" width="30" class="d-inline-block align-top" alt="">
 
         </a>
-        <p class="m-0 p-0 h3 font-weight-normal text-white">
+        <p class="m-0 p-0 h4 font-weight-normal text-white">
             {% block app_name %}
 
             {% endblock %}
@@ -39,9 +39,10 @@
 
                 <li class="nav-item"><a class="btn mybtn btn-primary m-1 " href="{% url 'main' %}">Main</a></li>
                 <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="{% url 'about' %}">About</a></li>
-
-                <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="/multiply">X-Multiply</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="/multiply">X-Multiply</a></li>
+                {% endif %}
 
                 {% if not user.is_authenticated %}
                     <li class="nav-item"><a class="btn mybtn btn-success m-1" href="{% url 'login' %}">Sign in</a></li>
@@ -60,7 +61,7 @@
 
 {% endblock %}
 
-<footer class="container-fluid bg-light border-top border-bottom mt-3 border-primary">
+<footer class="container-fluid border-top mt-3 border-primary">
     <div class="row d-flex justify-content-center p-1 mt-1 text-center">
         <a class="navbar-brand text-primary"
            href="https://www.linkedin.com/in/antonmiracle/"

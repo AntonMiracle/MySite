@@ -1,3 +1,4 @@
+
 .mybtn {
     width: 100px;
 }
@@ -7,6 +8,9 @@
 }
 
 .mynavbg{
-    background: url("https://picsum.photos/id/210/1920/400");
+    /*background: url("https://picsum.photos/id/210/1920/400");*/
+    background-image: url("https://picsum.photos/id/893/1920/400");
+    /*background: url("https://picsum.photos/id/919/1920/400");*/
+
 }
 
