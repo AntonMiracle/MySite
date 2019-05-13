@@ -12,35 +12,35 @@
                       oninput='password.setCustomValidity(password.value != confirm_password.value ? "Passwords do not match" : "")'>
 
                     {% csrf_token %}
-                    <h1 class="text-success mb-3 display-4">Sign up</h1>
+                    <h1>Sign up</h1>
 
                     <div class="form-group">
                         <label for="inputUsername">Name</label>
                         {% if form.username.errors %}
-                            <div class="alert alert-danger m-0 p-0" role="alert">
+                            <div class="text-danger m-0 p-0" role="alert">
                                 {% for error in form.username.errors %}
                                     {{ error }}
                                 {% endfor %}
                             </div>
                         {% endif %}
                         {{ form.username }}
-                        <small id="inputUsernameHelp" class="form-text text-black-50 m-0">
-                            may contain only letters, numbers, and @/./+/-/_ characters.
+                        <small id="inputUsernameHelp">
+                            only letters, numbers, and @/./+/-/_
                         </small>
                     </div>
 
                     <div class="form-group">
                         <label for="inputPassword">Password</label>
                         {% if form.password.errors %}
-                            <div class="alert alert-danger m-0 p-0" role="alert">
+                            <div class="text-danger m-0 p-0" role="alert">
                                 {% for error in form.password.errors %}
                                     {{ error }}
                                 {% endfor %}
                             </div>
                         {% endif %}
                         {{ form.password }}
-                        <small id="inputPasswordHelp" class="form-text text-black-50 m-0">
-                            minimum 6 symbols.
+                        <small id="inputPasswordHelp">
+                            minimum 6 symbols
                         </small>
                     </div>
 
@@ -49,27 +49,26 @@
                         <input type="password" class="form-control text-center border border-primary"
                                name="confirm_password" id="inputConfirmPassword"
                                placeholder="" required="" aria-describedby="inputConfirmPasswordHelp">
-                        <small id="inputConfirmPasswordHelp" class="form-text text-black-50 m-0">
-                            need to match with password.
+                        <small id="inputConfirmPasswordHelp">
+                            need to match with password
                         </small>
                     </div>
 
                     <div class="form-group">
                         <label for="inputEmail">Email</label>
                         {% if form.email.errors %}
-                            <div class="alert alert-danger m-0 p-0" role="alert">
+                            <div class="text-danger m-0 p-0" role="alert">
                                 {% for error in form.email.errors %}
                                     {{ error }}
                                 {% endfor %}
                             </div>
                         {% endif %}
                         {{ form.email }}
-                        <small id="inputEmailHelp" class="form-text text-black-50 m-0">
-                            enter existing email.
+                        <small id="inputEmailHelp">
+                            enter existing email
                         </small>
                     </div>
-                    <button class="btn mybtn btn-success m-3" type="submit">Sign up</button>
-
+                    <button type="submit">Sign up</button>
                 </form>
             </div>
         </div>

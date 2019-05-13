@@ -1,16 +1,196 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
-.mybtn {
-    width: 100px;
+body {
+    background-image: linear-gradient(to right, #09203f, #537895);
 }
 
-.mytd{
-    width: 100px;
+* {
+    color: #e4efe9;
+    font-family: 'Poppins', sans-serif;
 }
 
-.mynavbg{
-    /*background: url("https://picsum.photos/id/210/1920/400");*/
-    background-image: url("https://picsum.photos/id/893/1920/400");
-    /*background: url("https://picsum.photos/id/919/1920/400");*/
+img {
+    image-orientation: from-image;
+}
+
+/*==== LINK ANIMATION ======*/
+.my_link {
+    position: relative;
+    list-style: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    margin: 5px;
+    display: inline-flex;
+    transition: 0.5s;
+    color: #e4efe9;
+    letter-spacing: 2px;
+}
+
+li {
+    list-style: none;
+    display: inline-flex;
+}
+
+.my_link:hover {
+    color: #09203f;
+    text-decoration: none;
+}
+
+.my_link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #000;
+    z-index: -1;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.my_link:hover:before {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.5s;
+}
+
+.my_link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #000;
+    z-index: -1;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.my_link:hover:after {
+    transform-origin: right;
+    transform: scaleX(1);
+    transition: transform 0.5s;
+}
+
+.my_link:before,
+.my_link:after {
+    background: #e4efe9;
+}
+
+/*===============================*/
+/*==== BUTTON ANIMATION ======*/
+
+button {
+    position: relative;
+    padding: 8px 25px;
+    color: #e4efe9;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 24px;
+    border: 1px solid #e4efe9;
+    box-sizing: border-box;
+    transition: 0.5s;
+    background: none;
+    letter-spacing: 2px;
+}
+
+button:hover {
+    color: #09203f;
+}
+
+button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #e4efe9;
+    z-index: -1;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+    transform-origin: left;
+}
+
+button:hover:before {
+    transform: scaleX(1);
+    transition: transform 0.5s;
+    transform-origin: right;
+}
+
+button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #e4efe9;
+    z-index: -1;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+    transform-origin: right;
+}
+
+button:hover:after {
+    transform: scaleX(1);
+    transition: transform 0.5s;
+    transform-origin: left;
+}
+
+/*===============================*/
+/*========= MY TAGGLE MENU =========*/
+.my_nav {
+    width: 100%;
+    background: transparent;
+}
+
+.my_menu_ul {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.my_menu_li {
+    list-style: none;
+    display: inline-block;
+    /*padding: 20px;*/
 
 }
 
+.my_toggle {
+    width: 100%;
+    padding: 10px 20px;
+    background: transparent;
+    text-align: right;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 30px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .my_toggle {
+        display: block;
+    }
+
+    .my_menu_ul {
+        width: 100%;
+        display: none;
+    }
+
+    .my_menu_li {
+        display: block;
+        text-align: center;
+    }
+
+    .active {
+        display: block;
+    }
+}
+
+/*=======================*/

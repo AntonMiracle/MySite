@@ -50,7 +50,7 @@ def login(request):
             if next_url:
                 return redirect(next_url)
             else:
-                return redirect('home')
+                return redirect('main')
         else:
             return render(request, 'main/login.html', {'form': form})
 
@@ -65,7 +65,3 @@ def logout(request):
         dj_logout(request)
         return redirect('main')
 
-
-@login_required
-def home(request):
-    return render(request, 'main/home.html', {'username': request.user.username})

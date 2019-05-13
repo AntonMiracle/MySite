@@ -4,16 +4,16 @@
     about
 {% endblock %}
 
-{% block app_name %}
-    Anton B.
-{% endblock %}
-
-
 {% block content %}
-    <div class="container-fluid justify-content-sm-center">
+    <div class="container-fluid p-3">
+
+        <img src="/static/main/own/own1.jpg" width="300" >
+        <img src="/static/main/own/own3.jpg" width="300" >
+        <img src="/static/main/own/own4.jpg" width="300" >
+        <img src="/static/main/own/own5.jpg" width="300" >
         <div class="row justify-content-sm-center">
             <div class="col-xs-12 col-md-4 text-center">
-                <img src="/static/main/own_foto.jpg" width="300" class="align-self-center mr-3" alt="...">
+                <img src="/static/main/own/own1.jpg" width="300" class="align-self-center mr-3" alt="...">
             </div>
             <div class="col-xs-12 col-md-8">
                 <h1 class="text-primary text-center display-4">About</h1>
@@ -23,6 +23,26 @@
                 <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis
                     natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
             </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center p-1 mt-1 text-center">
+        <div class="col-6 text-left">
+            <a class="navbar-brand text-primary"
+               href="https://www.linkedin.com/in/antonmiracle/"
+               target="_blank">
+                <img src="/static/main/linked.png" width="30" class="d-inline-block align-top" alt="LinkedIn">
+            </a>
+            <a class="navbar-brand text-primary"
+               href="https://www.facebook.com/people/Anton-Bondarenko/100011605655074"
+               target="_blank">
+                <img src="/static/main/facebook.png" width="30" class="d-inline-block align-top" alt="FaceBook">
+            </a>
+            <a class="navbar-brand text-primary"
+               href="https://github.com/AntonMiracle"
+               target="_blank">
+                <img src="/static/main/github.png" width="30" class="d-inline-block align-top" alt="GitHub">
+            </a>
         </div>
     </div>
 {% endblock %}

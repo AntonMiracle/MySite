@@ -34,7 +34,7 @@ class RegistrationForm(ModelForm):
         widgets = {
             'username': TextInput(attrs={
                 'type': 'text',
-                'class': 'form-control text-center border border-success',
+                'class': 'form-control text-center',
                 'name': 'name',
                 'id': 'inputUsername',
                 'placeholder': '',
@@ -43,7 +43,7 @@ class RegistrationForm(ModelForm):
             }),
             'password': TextInput(attrs={
                 'type': 'password',
-                'class': 'form-control text-center border border-success',
+                'class': 'form-control text-center',
                 'name': 'password',
                 'id': 'inputPassword',
                 'placeholder': '',
@@ -52,10 +52,11 @@ class RegistrationForm(ModelForm):
             }),
             'email': TextInput(attrs={
                 'type': 'email',
-                'class': 'form-control text-center border border-success',
+                'class': 'form-control text-center',
                 'name': 'email',
                 'id': 'inputEmail',
                 'placeholder': '',
+                'required': '',
                 'aria-describedby': "inputEmailHelp",
             }),
         }

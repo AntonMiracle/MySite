@@ -17,69 +17,95 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossorigin="anonymous">
 </head>
 <body>
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow mb-4 border-bottom px-md-4 align-items-center mynavbg">
-        <a class="navbar-brand text-primary" href="{% url 'main' %}">
-            <img src="/static/main/brand.png" width="30" class="d-inline-block align-top" alt="">
+<nav class="my_nav">
+    <div class="my_toggle">
+        <div class="my_menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
 
-        </a>
-        <p class="m-0 p-0 h4 font-weight-normal text-white">
-            {% block app_name %}
 
-            {% endblock %}
-        </p>
-        <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="col-12 justify-content-md-end navbar-nav mr-auto align-items-center">
+    <ul class="my_menu_ul">
+        <li class="my_menu_li">
+            <a href="{% url 'main' %}">
+                <img src="/static/main/brand.png" width="40" class="d-inline-block m-2" alt="">
+            </a>
+        </li>
+        <li class="my_menu_li"><a class="my_link" href="{% url 'main' %}">Main</a></li>
+        <li class="my_menu_li"><a class="my_link" href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+            <li class="my_menu_li"><a class="my_link" href="/multiply">X-Multiply</a></li>
+        {% endif %}
 
-                <li class="nav-item"><a class="btn mybtn btn-primary m-1 " href="{% url 'main' %}">Main</a></li>
-                <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="{% url 'about' %}">About</a></li>
+        {% if not user.is_authenticated %}
+            <li class="my_menu_li"><a class="my_link" href="{% url 'login' %}">Sign in</a></li>
+            <li class="my_menu_li"><a class="my_link" href="{% url 'registration' %}">Sign
+                up</a></li>
+        {% else %}
+            <li class="my_menu_li"><a class="my_link" href="{% url 'logout' %}">Sign out</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="container-fluid align-items-center">
+
+    <!--
+    <div class="row">
+        <div class="col-md-2 col-xs-2">
+            <a href="{% url 'main' %}">
+                <img src="/static/main/brand.png" width="40" class="d-inline-block m-2" alt="">
+            </a>
+        </div>
+        <div class="col-md-10 col-xs-10">
+            <ul class="m-0 p-0 text-right">
+                <li><a class="my_link" href="{% url 'main' %}">Main</a></li>
+                <li><a class="my_link" href="{% url 'about' %}">About</a></li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="{% url 'home' %}">Home</a></li>
-                    <li class="nav-item"><a class="btn mybtn btn-primary m-1" href="/multiply">X-Multiply</a></li>
+                    <li><a class="my_link" href="/multiply">X-Multiply</a></li>
                 {% endif %}
 
                 {% if not user.is_authenticated %}
-                    <li class="nav-item"><a class="btn mybtn btn-success m-1" href="{% url 'login' %}">Sign in</a></li>
-                    <li class="nav-item"><a class="btn mybtn btn-success m-1" href="{% url 'registration' %}">Sign
+                    <li><a class="my_link" href="{% url 'login' %}">Sign in</a></li>
+                    <li><a class="my_link" href="{% url 'registration' %}">Sign
                         up</a></li>
                 {% else %}
-                    <li class="nav-item"><a class="btn mybtn btn-danger m-1" href="{% url 'logout' %}">Sign out</a></li>
+                    <li><a class="my_link" href="{% url 'logout' %}">Sign out</a></li>
                 {% endif %}
 
             </ul>
         </div>
-    </nav>
+    </div>
+    -->
 </div>
-
 {% block content %}
 
 {% endblock %}
-
-<footer class="container-fluid border-top mt-3 border-primary">
+<!--
+<footer class="container-fluid border-top border-secondary fixed-bottom">
     <div class="row d-flex justify-content-center p-1 mt-1 text-center">
-        <a class="navbar-brand text-primary"
-           href="https://www.linkedin.com/in/antonmiracle/"
-           target="_blank">
-            <img src="/static/main/linked.png" width="30" class="d-inline-block align-top" alt="LinkedIn">
-        </a>
-        <a class="navbar-brand text-primary"
-           href="https://www.facebook.com/people/Anton-Bondarenko/100011605655074"
-           target="_blank">
-            <img src="/static/main/facebook.png" width="30" class="d-inline-block align-top" alt="FaceBook">
-        </a>
-        <a class="navbar-brand text-primary"
-           href="https://github.com/AntonMiracle"
-           target="_blank">
-            <img src="/static/main/github.png" width="30" class="d-inline-block align-top" alt="GitHub">
-        </a>
+        <div class="col-12 text-left">
+            <a class="navbar-brand text-primary" href="{% url 'about' %}">
+                About
+            </a>
+        </div>
     </div>
 </footer>
+-->
+<!-- for my toggle menu -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.my_menu').click(function () {
+            $('.my_menu_ul').toggleClass('active')
+        })
+    })
+</script>
+
 <!-- bootstrap js-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
