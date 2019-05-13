@@ -188,9 +188,17 @@ button:hover:after {
         text-align: center;
     }
 
-    .active {
+    .open_toggle_menu {
         display: block;
     }
 }
 
+/*=======================*/
+/*======= ABOUT BG SECTION =======*/
+.my_about_bg_section{
+    height: 100vh;
+    background: url('/static/main/own/about_bg.png') no-repeat;
+    background-size: auto 160%;
+    overflow: hidden;
+}
 /*=======================*/
