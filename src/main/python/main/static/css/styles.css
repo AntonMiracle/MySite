@@ -195,10 +195,67 @@ button:hover:after {
 
 /*=======================*/
 /*======= ABOUT BG SECTION =======*/
-.my_about_bg_section{
-    height: 100vh;
-    background: url('/static/main/own/about_bg.png') no-repeat;
+.my_about_bg_section {
+    min-height: 100vh;
+    background: url('/static/main/about_bg.png') no-repeat;
     background-size: auto 160%;
     overflow: hidden;
 }
+
 /*=======================*/
+
+/*========= MY BOOK CARD===========*/
+.my_book_card {
+    position: relative;
+    margin: 50px;
+    width: 300px;
+    height: 400px;
+    background: #09203f;
+    transform-style: preserve-3d;
+    transform: perspective(2000px);
+    transition: 1s;
+    box-shadow: inset 300px 0 50px rgba(0, 0, 0, .5);
+}
+
+.my_book_card:hover {
+    transform: perspective(2000px) rotate(-10deg);
+    box-shadow: inset 20px 0 50px rgba(0, 0, 0, .5);
+}
+
+.my_book_card .my_book_img_title {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #537895;
+    box-sizing: border-box;
+    transform-origin: left;
+    z-index: 1;
+    transition: 1s;
+}
+
+.my_book_card .my_book_img_title img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.my_book_card:hover .my_book_img_title {
+    z-index: 1000px;
+    transform: rotateY(-135deg);
+}
+
+.my_book_card .my_book_details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/*====================*/
+.my_social_icon{
+
+}
