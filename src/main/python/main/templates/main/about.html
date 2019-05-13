@@ -5,14 +5,10 @@
 {% block content %}
 
     <section class="my_about_bg_section">
+        <div class="container-fluid p-0 m-0">
 
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <i class="fab fa-facebook fa-3x p-2"></i>
-                <i class="fab fa-linkedin fa-3x p-2"></i>
-                <i class="fab fa-github fa-3x p-2"></i>
-            </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center m-0 p-0">
+
                 <div class="my_book_card">
                     <div class="my_book_img_title">
                         <img src="/static/main/about_book_card1.jpg">
@@ -26,6 +22,7 @@
                             nisi
                             vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                     </div>
+                    <h3 class="text-center font-weight-light text-lowercase my_book_tip_click">Click me</h3>
                 </div>
 
                 <div class="my_book_card">
@@ -41,6 +38,7 @@
                             nisi
                             vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                     </div>
+                    <h3 class="text-center font-weight-light text-lowercase my_book_tip_click">Click me</h3>
                 </div>
 
                 <div class="my_book_card">
@@ -56,10 +54,31 @@
                             nisi
                             vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                     </div>
+                    <h3 class="text-center font-weight-light text-lowercase my_book_tip_click">Click me</h3>
                 </div>
+
             </div>
+
+            <div class="row justify-content-center m-0 p-0">
+                <a href="https://www.facebook.com/people/Anton-Bondarenko/100011605655074" target="_blank">
+                    <i class="fab fa-facebook fa-3x p-2"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/antonmiracle/" target="_blank">
+                    <i class="fab fa-linkedin fa-3x p-2"></i>
+                </a>
+                <a href="https://github.com/AntonMiracle" target="_blank">
+                    <i class="fab fa-github fa-3x p-2"></i>
+                </a>
+            </div>
+
+            <div class="row justify-content-center align-items-center  m-0 p-0">
+                <i class="fas fa-envelope fa-3x p-2"></i>
+                <h5 class="font-weight-light pl-2">b.anton.m.1986@gmail.com</h5>
+            </div>
+
         </div>
     </section>
+
     <script type="text/javascript">
         $('.my_about_bg_section').mousemove(function (e) {
             var moveX = (e.pageX * -1 / 12);

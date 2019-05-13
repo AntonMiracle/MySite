@@ -196,12 +196,15 @@ button:hover:after {
 /*=======================*/
 /*======= ABOUT BG SECTION =======*/
 .my_about_bg_section {
-    min-height: 100vh;
-    background: url('/static/main/about_bg.png') no-repeat;
-    background-size: auto 160%;
+    background: url('/static/main/about_bg.png') repeat center;
+    background-size: 160% auto;
     overflow: hidden;
 }
-
+@media (max-width: 1200px) {
+    .my_about_bg_section{
+        background: none;
+    }
+}
 /*=======================*/
 
 /*========= MY BOOK CARD===========*/
@@ -255,7 +258,9 @@ button:hover:after {
     padding: 20px;
 }
 
-/*====================*/
-.my_social_icon{
-
+@media (min-width: 1200px) {
+    .my_book_tip_click{
+        display: none;
+    }
 }
+/*====================*/
