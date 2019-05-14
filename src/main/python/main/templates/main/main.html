@@ -6,31 +6,44 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row justify-content-sm-center">
-            <div class="col-md-4 col-xs-12 p-2">
-                <div>
-                    <img src="https://picsum.photos/id/20/400/300" class="card-img-top embed-responsive-item">
-                    <div class="text-center p-2">
-                        <h5 class="card-title">X-Multiply</h5>
-                        <p class="card-text text-left font-italic">Learn multiplications, complete tasks, get experience
-                            and level
-                            up. Higher level - harder tasks. Are you know well multiplication?
-                        </p>
-                        <a href="/multiply/learn" class="my_link">Learn</a>
-                        <a href="/multiply/tasks" class="my_link">Tasks</a>
+        <div class="row justify-content-center">
+
+            <div class="col-md-4 col-xs-12 p-3 mb-5 d-flex justify-content-center align-items-center">
+                <div class="main_card">
+                    <div class="main_card_page main_card_page1">
+                        <img src="https://picsum.photos/id/20/300/400">
+                        <p class="main_card_tip_click m-0 p-0 text-center font-weight-normal text-lowercase">Click</p>
+                    </div>
+                    <div class="main_card_page main_card_page2">
+                        <div class="main_card_content text-center">
+                            <h2>X-Multiply</h2>
+                            <p class="card-text text-left font-italic">Learn multiplications, complete tasks, get
+                                experience
+                                and level
+                                up. Higher level - harder tasks. Are you know well multiplication?
+                            </p>
+                            <a href="/multiply/learn" class="my_link">Learn</a>
+                            <a href="/multiply/tasks" class="my_link">Tasks</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-12 p-2 my_bg">
-                <div>
-                    <img src="/static/main/own/own5.jpg" class="card-img-top embed-responsive-item">
-                    <div class="text-center p-2">
-                        <h5 class="card-title">About</h5>
-                        <p class="card-text text-left font-italic">Learn multiplications, complete tasks, get experience
-                            and level
-                            up. Higher level - harder tasks. Are you know well multiplication?
-                        </p>
-                        <a href="{% url 'about' %}" class="my_link">More</a>
+            <div class="col-md-4 col-xs-12 p-3 mb-5 d-flex justify-content-center align-items-center">
+                <div class="main_card">
+                    <div class="main_card_page main_card_page1">
+                        <img src="https://picsum.photos/id/524/300/400">
+                        <p class="main_card_tip_click m-0 p-0 text-center font-weight-normal text-lowercase">Click</p>
+                    </div>
+                    <div class="main_card_page main_card_page2">
+                        <div class="main_card_content text-center">
+                            <h2>About</h2>
+                            <p> Developed by: </p>
+                            <p>Anton Bondarenko</p>
+                            <p> Suggestions: </p>
+                            <p>b.anton.m.1986@gmail.com</p>
+                            <p>My code is my passion ... </p>
+                            <a href="{% url 'about' %}" class="my_link">More</a>
+                        </div>
                     </div>
                 </div>
             </div>

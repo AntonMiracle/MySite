@@ -200,11 +200,13 @@ button:hover:after {
     background-size: 160% auto;
     overflow: hidden;
 }
+
 @media (max-width: 1200px) {
-    .my_about_bg_section{
+    .my_about_bg_section {
         background: none;
     }
 }
+
 /*=======================*/
 
 /*========= MY BOOK CARD===========*/
@@ -246,7 +248,7 @@ button:hover:after {
 }
 
 .my_book_card:hover .my_book_img_title {
-    z-index: 1000px;
+    z-index: 1000;
     transform: rotateY(-135deg);
 }
 
@@ -258,9 +260,83 @@ button:hover:after {
     padding: 20px;
 }
 
-@media (min-width: 1200px) {
-    .my_book_tip_click{
+@media (min-width: 600px) {
+    .my_book_tip_click {
         display: none;
     }
 }
+
 /*====================*/
+/*======== MAIN CARD ========*/
+.main_card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+.main_card .main_card_page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_card .main_card_page.main_card_page1 {
+    top: 0;
+    left: 0;
+    transition-property: left, z-index, transform;
+    transition-delay: 0s, .5s, .5s;
+    transition-duration: .5s, .0s, .5s;
+    z-index: 2;
+    transform: translate(-10px, -10px);
+}
+
+.main_card:hover .main_card_page.main_card_page1 {
+    transition-property: transform, z-index, left;
+    transition-delay: 0s, .5s, .5s;
+    transition-duration: .5s, .0s, .5s;
+    z-index: 1;
+    transform: translate(170px, -10px);
+    left: -160px;
+}
+
+.main_card .main_card_page.main_card_page2 {
+    background: #09203f;
+    border: 1px solid #537895;
+    top: 0;
+    left: 0;
+    transition-property: left, z-index, transform;
+    transition-delay: 0s, .5s, .5s;
+    transition-duration: .5s, .0s, .5s;
+    z-index: 1;
+}
+
+.main_card:hover .main_card_page.main_card_page2 {
+    transition-property: transform, z-index, left;
+    transition-delay: 0s, .5s, .5s;
+    transition-duration: .5s, .0s, .5s;
+    transform: translateX(-160px);
+    z-index: 2;
+    left: 160px;
+}
+
+.main_card .main_card_page.main_card_page2 .main_card_content {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main_card_tip_click {
+    text-orientation: upright;
+    writing-mode: vertical-rl;
+}
+
+@media (min-width: 600px) {
+    .main_card_tip_click {
+        display: none;
+    }
+}
+
+/*==================*/
